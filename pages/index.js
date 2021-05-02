@@ -26,10 +26,14 @@ export const getStaticProps = async () => {
           image
         }
       }
-    }`
+    }`,
+    variables: {
+      "limit" :1118,
+      "offset" : 0
+    }
   });
 
-  console.log('data', data)
+  
 
   return {
     props: { pokemons: data.pokemons.results },
@@ -37,7 +41,6 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ pokemons }) {
-  console.log(pokemons)
   return (
     <div>
       <h2>Hello World</h2>

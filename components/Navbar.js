@@ -7,7 +7,6 @@ const Navbar = () => {
         <h1>Pokemon</h1>
       </div>
       <Link href='/'><a>Home</a></Link>
-      <Link href='/about'><a>About</a></Link>
       <Link href='/mypokemon/'><a>Pokemon Listing</a></Link>
     </nav>
   );
