@@ -1,3 +1,5 @@
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+
 export const getStaticProps = async () => {
   const res = await fetch("https://pokeapi.co/api/v2/pokemon");
   const data = await res.json();
