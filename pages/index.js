@@ -1,10 +1,25 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { css } from '@emotion/react';
 import { ApolloClient, InMemoryCache, gql, useQuery } from "@apollo/client";
+
+
+export default function Home({ pokemons }) {
+  console.log(pokemons)
+  return (
+    <div>
+      {pokemons.map((pokemon, index) => {
+        return (
+          <div style={{ margin: "auto", width: "500px" }} key={index}>
+            <a>
+              <h3>{pokemon.name}</h3>
+            </a>
+            <img src={pokemon.image} alt=""/>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export const getStaticProps = async () => {
   const client = new ApolloClient({
@@ -34,31 +49,7 @@ export const getStaticProps = async () => {
     }
   });
 
-  
-
   return {
     props: { pokemons: data.pokemons.results },
   };
 };
-
-export default function Home({ pokemons }) {
-  return (
-    <div>
-      <h2 css={
-        css`
-        font-size : 70px;
-        color : red;
-        background-color: black`
-      }>Hello World</h2>
-      {pokemons.map((pokemon, index) => {
-        return (
-          <div style={{ margin: "auto", width: "500px" }} key={index}>
-            <a>
-              <h3>{pokemon.name}</h3>
-            </a>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
