@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { css } from '@emotion/react';
 import { ApolloClient, InMemoryCache, gql, useQuery } from "@apollo/client";
 
 export const getStaticProps = async () => {
@@ -43,7 +44,12 @@ export const getStaticProps = async () => {
 export default function Home({ pokemons }) {
   return (
     <div>
-      <h2>Hello World</h2>
+      <h2 css={
+        css`
+        font-size : 70px;
+        color : red;
+        background-color: black`
+      }>Hello World</h2>
       {pokemons.map((pokemon, index) => {
         return (
           <div style={{ margin: "auto", width: "500px" }} key={index}>
