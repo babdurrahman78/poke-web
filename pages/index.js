@@ -39,14 +39,13 @@ const name = css`
 `;
 
 export default function Home({ pokemons }) {
-  console.log(pokemons)
   return (
     <Row css={row} className="justify-content-between">
       {pokemons.map((pokemon, index) => {
         return (
           <Col
             css={col}
-            className="col-6 col-xs-4 col-sm-3 col-md-3 col-lg-3 col-xl-4 my-2"
+            className="col-6 col-xs-4 col-sm-3 col-md-3 col-lg-3 col-xl-4 mt-2"
             key={index}
           >
             <Link href={`/pokemon?name=${pokemon.name}`} >
