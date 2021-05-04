@@ -1,5 +1,4 @@
 import Topbar from "./Topbar";
-import Footer from "./Footer";
 import Head from "next/head";
 import { css } from "@emotion/react";
 
@@ -21,7 +20,6 @@ const Layout = ({ children }) => {
       </Head>
       <Topbar />
       {children}
-      <Footer />
     </div>
   );
 };
