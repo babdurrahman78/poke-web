@@ -73,7 +73,7 @@ export default function Home({ pokemons }) {
   );
 }
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const client = new ApolloClient({
     uri: "https://graphql-pokeapi.vercel.app/api/graphql",
     cache: new InMemoryCache(),

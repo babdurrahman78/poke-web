@@ -1,19 +1,19 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
-export const getStaticProps = async () => {
-  const res = await fetch("https://pokeapi.co/api/v2/pokemon");
-  const data = await res.json();
+// export const getStaticProps = async () => {
+//   const res = await fetch("https://pokeapi.co/api/v2/pokemon");
+//   const data = await res.json();
   
-  return {
-    props: { pokemons: data.results },
-  };
-};
+//   return {
+//     props: { pokemons: data.results },
+//   };
+// };
 
-const User = ({ pokemons }) => {
+const MyPokemon = () => {
   return (
     <div>
       <h1>All User!!</h1>
-      {pokemons.map((pokemon, index) => {
+      {/* {pokemons.map((pokemon, index) => {
         return (
           <div key={index}>
             <a>
@@ -21,9 +21,9 @@ const User = ({ pokemons }) => {
             </a>
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 };
 
-export default User;
+export default MyPokemon;

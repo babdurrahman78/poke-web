@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { css } from "@emotion/react";
-import { Navbar, NavbarBrand } from "reactstrap";
+import { Navbar } from "reactstrap";
 
 const navbar = css`
   background-image: linear-gradient(
@@ -16,14 +16,16 @@ const Topbar = () => {
   return (
     <div>
       <Navbar css={navbar} color="light" light expand="md">
-        <NavbarBrand href="/">
+      <Link href="/">
+        <a>
           <Image
             src="/pokemon-logo.png"
             alt="pokemon-logo"
             width={100}
             height={35}
           />
-        </NavbarBrand>
+        </a>
+      </Link>
       </Navbar>
     </div>
   );

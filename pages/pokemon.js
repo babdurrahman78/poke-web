@@ -64,11 +64,7 @@ export default function pokemon({ poke }) {
 
   const catchPokemon = () => {
     const randomNumber = Math.floor(Math.random() * 2);
-    if (randomNumber === 1) {
-      setIsCatched(true);
-    } else {
-      setIsCatched(false);
-    }
+    setIsCatched(randomNumber === 1 ? true : false)
     setModal(!modal);
     console.log(randomNumber);
   };
