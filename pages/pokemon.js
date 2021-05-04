@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { MyPokemonContext } from "../components/PokemonContext";
+
 import {
   Card,
   CardTitle,
@@ -46,25 +48,45 @@ const li = css`
 const button = css`
   position: absolute;
   bottom: 0;
-`
+`;
 const moveTitle = css`
   text-align: center;
-`
+`;
 
 const moveItem = css`
   margin-bottom: 5px;
   border-style: outset;
   font-weight: 500;
   text-align: center;
-`
+`;
 
 export default function pokemon({ poke }) {
+  const [state, dispatch] = useContext(MyPokemonContext);
+
   const [modal, setModal] = useState(false);
   const [isCatched, setIsCatched] = useState(false);
+  const [nickname, setNickname] = useState("")
+  const name = poke.name;
+  const image = poke.sprites.front_default;
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newPokemon = {
+      nickname, name, image
+    }
+    console.log(newPokemon);
+    setNickname("");
+    dispatch({
+      type: "ADD_POKEMON",
+      payload: newPokemon
+    });
+    setModal(!modal);
+  }
 
   const catchPokemon = () => {
     const randomNumber = Math.floor(Math.random() * 2);
-    setIsCatched(randomNumber === 1 ? true : false)
+    setIsCatched(randomNumber === 1 ? true : false);
     setModal(!modal);
     console.log(randomNumber);
   };
@@ -97,7 +119,11 @@ export default function pokemon({ poke }) {
       <ol css={move}>
         <h3 css={moveTitle}>Moves</h3>
         {poke.moves.map((move, index) => {
-          return <li css={moveItem} key={index}>{move.move.name}</li>;
+          return (
+            <li css={moveItem} key={index}>
+              {move.move.name}
+            </li>
+          );
         })}
       </ol>
       <Button onClick={catchPokemon} color="success" block>
@@ -109,15 +135,24 @@ export default function pokemon({ poke }) {
             <div>
               <h3>Yeayyy</h3>
               <p>You got {poke.name}</p>
-              <p>Give it a name</p>
+              <form onSubmit={handleSubmit}>
+                <label>Give a name</label>
+                <input
+                  type="text"
+                  required
+                  value={nickname}
+                  onChange={(e) => setNickname(e.target.value)}
+                ></input>
+                <button>Submit</button>
+              </form>
             </div>
           ) : (
             <h3>Try Again :(</h3>
           )}
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggle}>
-            Exit
+          <Button color="danger" onClick={toggle}>
+            CANCEL
           </Button>
         </ModalFooter>
       </Modal>

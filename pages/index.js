@@ -1,5 +1,7 @@
-import Link from 'next/link'
+import Link from 'next/link';
+import { useContext } from 'react';
 import { css } from "@emotion/react";
+import { MyPokemonContext } from '../components/PokemonContext';
 import { Card, CardTitle, CardImg, Row, Col } from "reactstrap";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
@@ -41,6 +43,9 @@ const name = css`
 `;
 
 export default function Home({ pokemons }) {
+
+  // const name = useContext(MyPokemonContext);
+
   return (
     <Row css={row} className="justify-content-between">
       {pokemons.map((pokemon, index) => {
