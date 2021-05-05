@@ -195,18 +195,20 @@ export default function pokemon({ poke }) {
                   value={nickname}
                   onChange={(e) => setNickname(e.target.value)}
                 ></input>
-                <button>Submit</button>
+                <Button color='success'>
+                  Submit
+                </Button>
               </form>
             </div>
           ) : (
-            <h3>Try Again :(</h3>
+            <div>
+              <h3>Try Again :(</h3>
+              <Button color="danger" onClick={toggle}>
+                Retry
+              </Button>
+            </div>
           )}
         </ModalBody>
-        <ModalFooter>
-          <Button color="danger" onClick={toggle}>
-            CANCEL
-          </Button>
-        </ModalFooter>
       </Modal>
     </Card>
   );
