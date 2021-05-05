@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { css } from "@emotion/react";
+import Image from 'next/image';
 import { MyPokemonContext } from '../../components/PokemonContext';
 import { Card, CardTitle, CardImg, Row, Col, Button } from "reactstrap";
 
@@ -47,6 +48,8 @@ const name = css`
 
 const MyPokemon = () => {
 
+  const [state, dispatch] = useContext(MyPokemonContext);
+
   const remove = (ev) =>{
     dispatch({
       type: "DELETE_POKEMON",
@@ -54,10 +57,35 @@ const MyPokemon = () => {
     });
   }
 
-  const [state, dispatch] = useContext(MyPokemonContext);
-  console.log(state);
+
   return (
-    <Row css={row} className="justify-content-between">
+    <div>
+      {state.pokemons.length === 0 && 
+        <div css={css`
+          min-width: 300px;
+          max-width: 400px;
+          margin: 100px auto 0;
+        `}>
+          <img src='/poke.jpg' alt='poke-logo' css={css`
+            width: 200px;
+            display: block;
+            height: auto;
+            margin: auto
+          `}
+           />
+           <p css={css`
+            text-align: center;
+            font-size: 20px;
+            font-weight: 500;
+           `}>0 Pokemon owned.</p>
+           <p css={css`
+            text-align: center;
+            font-size: 20px;
+            font-weight: 500;
+           `}>Go Catch some Pokemons!</p>
+        </div>
+      }
+      <Row css={row} className="justify-content-between">
       {state.pokemons && state.pokemons.map((pokemon) => {
         return (
           <Col
@@ -89,7 +117,9 @@ const MyPokemon = () => {
         );
       })}
     </Row>
-  );
+    </div>
+
+      );
 };
 
 export default MyPokemon;
