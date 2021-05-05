@@ -48,8 +48,9 @@ const name = css`
 
 const MyPokemon = () => {
 
-  const [state, dispatch] = useContext(MyPokemonContext);
 
+  const [state, dispatch] = useContext(MyPokemonContext);
+  console.log(state);
   const remove = (ev) =>{
     dispatch({
       type: "DELETE_POKEMON",

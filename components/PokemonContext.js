@@ -22,6 +22,7 @@ const reducer = (state, action) => {
 let defaultmMyPokemon = {
   pokemons: []
 };
+
 const local = typeof window !== "undefined" && localStorage.getItem('state');
 if (local) defaultmMyPokemon = JSON.parse(local);
 
