@@ -12,6 +12,10 @@ const navbar = css`
   height: 60px;
 `;
 
+const list = css`
+    color: #FFFFFF
+`;
+
 const Topbar = () => {
   return (
     <div>
@@ -27,7 +31,7 @@ const Topbar = () => {
         </a>
       </Link>
       <Link href="/mypokemon">
-        <a>
+        <a css={list}>
           my pokemon list
         </a>
       </Link>

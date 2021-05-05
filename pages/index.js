@@ -101,7 +101,7 @@ export const getServerSideProps = async (context) => {
         }
       `,
       variables: {
-        limit: 20,
+        limit: 1118,
         offset: 0,
       },
     });
