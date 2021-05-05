@@ -3,51 +3,41 @@ import Image from "next/image";
 import { css } from "@emotion/react";
 import { Navbar } from "reactstrap";
 
-const navbar = css`
+
+const Topbar = () => {
+  return (
+    <div>
+      <Navbar css={css`
   background-image: linear-gradient(
     135deg,
     #2afadf 10%,
     #4c83ff 100%
   ) !important;
   height: 60px;
-`;
-
-const Topbar = () => {
-  return (
-    <div>
-      <Navbar
-        css={css`
-          margin: 20px;
-        `}
-        color="light"
-        light
-        expand="md"
-      >
-        <Link href="/">
-          <a>
-            <Image
-              src="/pokemon-logo.png"
-              alt="pokemon-logo"
-              width={100}
-              height={35}
-            />
-          </a>
-        </Link>
-        <Link href="/mypokemon">
-          <a
-            css={css`
+`} color="light" light expand="md">
+      <Link href="/">
+        <a>
+          <Image
+            src="/pokemon-logo.png"
+            alt="pokemon-logo"
+            width={100}
+            height={35}
+          />
+        </a>
+      </Link>
+      <Link href="/mypokemon">
+        <a css={css`
               position: absolute;
               right: 10px;
-            `}
-          >
-            <Image
-              src="/pokemon-navbar.png"
-              alt="my pokemons list button"
-              width={50}
-              height={50}
-            />
-          </a>
-        </Link>
+            `}>
+          <Image
+            src='/pokemon-navbar.png'
+            alt='my pokemons list button'
+            width={50}
+            height={50}
+          />
+        </a>
+      </Link>
       </Navbar>
     </div>
   );
