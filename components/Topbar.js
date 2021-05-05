@@ -12,29 +12,42 @@ const navbar = css`
   height: 60px;
 `;
 
-const list = css`
-    color: #FFFFFF
-`;
-
 const Topbar = () => {
   return (
     <div>
-      <Navbar css={navbar} color="light" light expand="md">
-      <Link href="/">
-        <a>
-          <Image
-            src="/pokemon-logo.png"
-            alt="pokemon-logo"
-            width={100}
-            height={35}
-          />
-        </a>
-      </Link>
-      <Link href="/mypokemon">
-        <a css={list}>
-          my pokemon list
-        </a>
-      </Link>
+      <Navbar
+        css={css`
+          margin: 20px;
+        `}
+        color="light"
+        light
+        expand="md"
+      >
+        <Link href="/">
+          <a>
+            <Image
+              src="/pokemon-logo.png"
+              alt="pokemon-logo"
+              width={100}
+              height={35}
+            />
+          </a>
+        </Link>
+        <Link href="/mypokemon">
+          <a
+            css={css`
+              position: absolute;
+              right: 10px;
+            `}
+          >
+            <Image
+              src="/pokemon-navbar.png"
+              alt="my pokemons list button"
+              width={50}
+              height={50}
+            />
+          </a>
+        </Link>
       </Navbar>
     </div>
   );

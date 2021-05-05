@@ -1,14 +1,14 @@
-import Link from 'next/link';
-import { useContext } from 'react';
+import Link from "next/link";
+import { useContext } from "react";
 import { css } from "@emotion/react";
-import { MyPokemonContext } from '../components/PokemonContext';
+import { MyPokemonContext } from "../components/PokemonContext";
 import { Card, CardTitle, CardImg, Row, Col } from "reactstrap";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 const h3 = css`
   text-align: center;
-  color: #A9A9A9;
-`
+  color: #a9a9a9;
+`;
 const row = css`
   max-width: 1000px;
   margin: auto;
@@ -49,43 +49,42 @@ const name = css`
 export default function Home({ pokemons }) {
   const [state, dispatch] = useContext(MyPokemonContext);
 
-
-  
   return (
     <div>
-
-      {state.pokemons && <h3 css={h3}>Pokemon owned Total : {state.pokemons.length}</h3>}
+      {state.pokemons && (
+        <h3 css={h3}>Pokemon owned Total : {state.pokemons.length}</h3>
+      )}
 
       <Row css={row} className="justify-content-between">
-      {pokemons.map((pokemon, index) => {
-        return (
-          <Col
-            css={col}
-            className="col-6 col-xs-4 col-sm-3 col-md-3 col-lg-3 col-xl-4 mt-2"
-            key={index}
-          >
-            <Link href={`/pokemon?name=${pokemon.name}`} >
-            <a css={a}>
-              <Card css={card} body>
-                <CardImg
-                  css={img}
-                  top
-                  width="100%"
-                  src={pokemon.image}
-                  alt={pokemon.name}
-                />
-                <CardTitle css={name} tag="h5">
-                  {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-                </CardTitle>
-              </Card>
-            </a>
-            </Link>
-          </Col>
-        );
-      })}
-    </Row>
+        {pokemons.map((pokemon, index) => {
+          return (
+            <Col
+              css={col}
+              className="col-6 col-xs-4 col-sm-3 col-md-3 col-lg-3 col-xl-4 mt-2"
+              key={index}
+            >
+              <Link href={`/pokemon?name=${pokemon.name}`}>
+                <a css={a}>
+                  <Card css={card} body>
+                    <CardImg
+                      css={img}
+                      top
+                      width="100%"
+                      src={pokemon.image}
+                      alt={pokemon.name}
+                    />
+                    <CardTitle css={name} tag="h5">
+                      {pokemon.name.charAt(0).toUpperCase() +
+                        pokemon.name.slice(1)}
+                    </CardTitle>
+                  </Card>
+                </a>
+              </Link>
+            </Col>
+          );
+        })}
+      </Row>
     </div>
-    
   );
 }
 
@@ -114,16 +113,15 @@ export const getServerSideProps = async (context) => {
         }
       `,
       variables: {
-        limit: 1118,
+        limit: 20,
         offset: 0,
       },
     });
-  
+
     return {
       props: { pokemons: data.pokemons.results },
     };
+  } catch (err) {
+    console.log(err);
   }
-    catch(err) {
-      console.log(err);
-    }
 };
