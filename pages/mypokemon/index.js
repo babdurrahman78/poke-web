@@ -60,8 +60,7 @@ const MyPokemon = () => {
 
   return (
     <div>
-      {state.pokemons.length === 0 && 
-        <div css={css`
+      {state.pokemons.length === 0 && <div css={css`
           min-width: 300px;
           max-width: 400px;
           margin: 100px auto 0;
@@ -83,8 +82,7 @@ const MyPokemon = () => {
             font-size: 20px;
             font-weight: 500;
            `}>Go Catch some Pokemons!</p>
-        </div>
-      }
+        </div>}
       <Row css={row} className="justify-content-between">
       {state.pokemons && state.pokemons.map((pokemon) => {
         return (

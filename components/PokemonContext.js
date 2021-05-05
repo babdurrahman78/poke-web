@@ -6,7 +6,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "SET_POKEMON":
       return {
-        pokemons: action.payload
+        pokemons: action.payload,
       };
     case "ADD_POKEMON":
       return {
@@ -15,41 +15,36 @@ const reducer = (state, action) => {
     case "DELETE_POKEMON":
       return {
         pokemons: state.pokemons.filter(
-          pokemons => pokemons.nickname !== action.payload
-        )
-      }
+          (pokemons) => pokemons.nickname !== action.payload
+        ),
+      };
     default:
-        return state;
+      return state;
   }
 };
 
-const myPokemon = {
-    pokemons : []
-}
+let defaultmMyPokemon = {
+  pokemons: []
+};
+const local = typeof window !== "undefined" && localStorage.getItem('state');
+if (local) defaultmMyPokemon = JSON.parse(local);
 
 
-export const Provider = ({ children, storageKey = 'state' }) => {
-  // const [isInitialized, setIsInitialized] = useState(false);
-
-  const [state, dispatch] = useReducer(reducer, myPokemon);
+export const Provider = ({ children, storageKey = "state" }) => {
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [state, dispatch] = useReducer(reducer, defaultmMyPokemon);
 
   // useEffect(() => {
-    
-  //   localStorage.setItem('state', JSON.stringify(state));
+  //   dispatch({
+  //     type: "SET_POKEMON",
+  //     payload: JSON.parse(localStorage.getItem("state.pokemons")),
+  //   });
   //   setIsInitialized(true);
+  // }, []);
 
-  // }, [state]);
-
- 
-  // useEffect(() => {
-  //     if(isInitialized){
-  //       dispatch({
-  //         type: "SET_POKEMON",
-  //         payload: JSON.parse(localStorage.getItem('state.pokemons'))
-  //       });
-  //     }
-  // },[]);
-
+  useEffect(() => {
+      localStorage.setItem("state", JSON.stringify(state));
+  }, [state]);
 
   return (
     <MyPokemonContext.Provider value={[state, dispatch]}>
@@ -57,4 +52,3 @@ export const Provider = ({ children, storageKey = 'state' }) => {
     </MyPokemonContext.Provider>
   );
 };
-
