@@ -44,8 +44,6 @@ const name = css`
 
 export default function Home({ pokemons }) {
 
-  // const name = useContext(MyPokemonContext);
-
   return (
     <Row css={row} className="justify-content-between">
       {pokemons.map((pokemon, index) => {

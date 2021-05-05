@@ -10,7 +10,6 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
-  ModalHeader,
 } from "reactstrap";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
@@ -66,25 +65,41 @@ export default function pokemon({ poke }) {
   const [modal, setModal] = useState(false);
   const [isCatched, setIsCatched] = useState(false);
   const [nickname, setNickname] = useState("")
+  const [nicknames, setNicknames] = useState([]);
+  const [isDuplicate, setIsDuplicate] = useState(false);
+
   const name = poke.name;
   const image = poke.sprites.front_default;
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newPokemon = {
-      nickname, name, image
+    if(nicknames.includes(nickname)){
+      setIsDuplicate(true);
+      setTimeout(() => {
+        setIsDuplicate(false)
+      }, 1000);
     }
-    console.log(newPokemon);
-    setNickname("");
-    dispatch({
-      type: "ADD_POKEMON",
-      payload: newPokemon
-    });
-    setModal(!modal);
+    else {
+      const newPokemon = {
+        nickname, name, image
+      }
+      console.log(newPokemon);
+      setNickname("");
+      dispatch({
+        type: "ADD_POKEMON",
+        payload: newPokemon
+      });
+      setNicknames([...nicknames, nickname]);
+      setModal(!modal);
+    }
   }
 
   const catchPokemon = () => {
+    const allnick = state.pokemons.map(poke => {
+      return poke.nickname;
+    });
+    setNicknames(allnick);
     const randomNumber = Math.floor(Math.random() * 2);
     setIsCatched(randomNumber === 1 ? true : false);
     setModal(!modal);
@@ -144,6 +159,7 @@ export default function pokemon({ poke }) {
                   onChange={(e) => setNickname(e.target.value)}
                 ></input>
                 <button>Submit</button>
+                {isDuplicate && <p>nickname must be unique</p>}
               </form>
             </div>
           ) : (

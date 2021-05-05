@@ -26,6 +26,11 @@ const Topbar = () => {
           />
         </a>
       </Link>
+      <Link href="/mypokemon">
+        <a>
+          my pokemon list
+        </a>
+      </Link>
       </Navbar>
     </div>
   );
