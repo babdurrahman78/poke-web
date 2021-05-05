@@ -27,7 +27,6 @@ if (local) defaultmMyPokemon = JSON.parse(local);
 
 
 export const Provider = ({ children, storageKey = "state" }) => {
-  const [isInitialized, setIsInitialized] = useState(false);
   const [state, dispatch] = useReducer(reducer, defaultmMyPokemon);
 
   useEffect(() => {
