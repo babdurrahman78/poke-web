@@ -5,6 +5,10 @@ import { MyPokemonContext } from '../components/PokemonContext';
 import { Card, CardTitle, CardImg, Row, Col } from "reactstrap";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
+const h3 = css`
+  text-align: center;
+  color: #A9A9A9;
+`
 const row = css`
   max-width: 1000px;
   margin: auto;
@@ -43,9 +47,16 @@ const name = css`
 `;
 
 export default function Home({ pokemons }) {
+  const [state, dispatch] = useContext(MyPokemonContext);
 
+
+  
   return (
-    <Row css={row} className="justify-content-between">
+    <div>
+
+      {state.pokemons && <h3 css={h3}>Pokemon owned Total : {state.pokemons.length}</h3>}
+
+      <Row css={row} className="justify-content-between">
       {pokemons.map((pokemon, index) => {
         return (
           <Col
@@ -73,6 +84,8 @@ export default function Home({ pokemons }) {
         );
       })}
     </Row>
+    </div>
+    
   );
 }
 
