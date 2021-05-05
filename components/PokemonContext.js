@@ -8,6 +8,12 @@ const reducer = (state, action) => {
       return {
         pokemons: [...state.pokemons, action.payload],
       };
+    case "DELETE_POKEMON":
+      return {
+        pokemons: state.pokemons.filter(
+          pokemons => pokemons.nickname !== action.payload
+        )
+      }
     default:
         return state;
   }

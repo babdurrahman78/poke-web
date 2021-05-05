@@ -36,22 +36,34 @@ const card = css`
   }
 `;
 
-const name = css`
+const nickname = css`
   text-align: center;
 `;
 
+const name = css`
+  color: #A9A9A9;
+  text-align: center;
+`
+
 const MyPokemon = () => {
+
+  const remove = (ev) =>{
+    dispatch({
+      type: "DELETE_POKEMON",
+      payload: ev.currentTarget.value
+    });
+  }
 
   const [state, dispatch] = useContext(MyPokemonContext);
   console.log(state);
   return (
     <Row css={row} className="justify-content-between">
-      {state.pokemons && state.pokemons.map((pokemon, index) => {
+      {state.pokemons && state.pokemons.map((pokemon) => {
         return (
           <Col
             css={col}
             className="col-6 col-xs-4 col-sm-3 col-md-3 col-lg-3 col-xl-4 mt-2"
-            key={index}
+            key={pokemon.nickname}
           >
             <a css={a}>
               <Card css={card} body>
@@ -62,13 +74,13 @@ const MyPokemon = () => {
                   src={pokemon.image}
                   alt={pokemon.name}
                 />
-                <CardTitle css={name} tag="h5">
+                <CardTitle css={nickname} tag="h5">
                   {pokemon.nickname.charAt(0).toUpperCase() + pokemon.nickname.slice(1)}
                 </CardTitle>
                 <CardTitle css={name} tag="h5">
                   {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
                 </CardTitle>
-                <Button color="danger" onClick={delete}>
+                <Button color="danger" value={pokemon.nickname} onClick={remove}>
                   Delete
                 </Button>
               </Card>
