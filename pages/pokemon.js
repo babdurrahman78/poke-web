@@ -9,7 +9,6 @@ import {
   Button,
   Modal,
   ModalBody,
-  ModalFooter,
 } from "reactstrap";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
@@ -63,12 +62,13 @@ export default function pokemon({ poke }) {
   const [state, dispatch] = useContext(MyPokemonContext);
 
   const allnick = state.pokemons.map((pokemon) => {
-    return pokemon.nickname;
+    return pokemon.nickname || null;
   });
 
   const [modal, setModal] = useState(false);
   const [isCatched, setIsCatched] = useState(false);
   const [nickname, setNickname] = useState("");
+  const [isDuplicate, setIsDuplicate] = useState(false);
 
   const name = poke.name;
   const image = poke.sprites.front_default;
@@ -82,13 +82,22 @@ export default function pokemon({ poke }) {
       image,
     };
 
-    setNickname("");
-    dispatch({
-      type: "ADD_POKEMON",
-      payload: newPokemon,
-    });
-    setModal(!modal);
+    if(allnick.includes(nickname)){
+      setIsDuplicate(true);
+      setTimeout(() => {
+        setIsDuplicate(false);
+      }, 2000);
+    }
+    else{
+      dispatch({
+        type: "ADD_POKEMON",
+        payload: newPokemon,
+      });
+      setNickname("");
+      setModal(!modal);
+    }
   };
+
 
   const catchPokemon = () => {
     const randomNumber = Math.random();
@@ -189,12 +198,18 @@ export default function pokemon({ poke }) {
               <p>You got {poke.name}</p>
               <form onSubmit={handleSubmit}>
                 <label>Give a name</label>
-                <input
+                <input css={css`
+                  display: block;
+                `}
                   type="text"
                   required
                   value={nickname}
                   onChange={(e) => setNickname(e.target.value)}
                 ></input>
+                {isDuplicate && <p css={css`
+                  color: red;
+                  font-weight: 500;
+                `}>Nickname must be unique</p> }
                 <Button color='success'>
                   Submit
                 </Button>
