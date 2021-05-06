@@ -101,7 +101,13 @@ export default function pokemon({ poke }) {
 
   const catchPokemon = () => {
     const randomNumber = Math.random();
-    setIsCatched(randomNumber < 0.5 ? true : false);
+    if(randomNumber < 0.5){ 
+      setIsCatched(true);
+      
+    }
+    else{
+      setIsCatched(false);
+    }
     setModal(!modal);
   };
 
@@ -200,6 +206,7 @@ export default function pokemon({ poke }) {
                 <label>Give a name</label>
                 <input css={css`
                   display: block;
+                  margin-bottom: 5px;
                 `}
                   type="text"
                   required
@@ -210,8 +217,13 @@ export default function pokemon({ poke }) {
                   color: red;
                   font-weight: 500;
                 `}>Nickname must be unique</p> }
-                <Button color='success'>
+                <Button css={css`
+                  margin-right: 5px;
+                `} color='success'>
                   Submit
+                </Button>
+                <Button color='danger' onClick={toggle}>
+                  Cancel
                 </Button>
               </form>
             </div>
