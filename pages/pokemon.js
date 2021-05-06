@@ -76,13 +76,15 @@ export default function pokemon({ poke }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const newNickname = nickname.toLowerCase();
+
     const newPokemon = {
-      nickname,
+      nickname: newNickname,
       name,
       image,
     };
 
-    if(allnick.includes(nickname)){
+    if(allnick.includes(newNickname)){
       setIsDuplicate(true);
       setTimeout(() => {
         setIsDuplicate(false);
