@@ -7,7 +7,6 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 export default function Home({ pokemons }) {
   const [state] = useContext(MyPokemonContext);
-
   return (
     <div>
       {state.pokemons && (
@@ -115,7 +114,7 @@ export const getServerSideProps = async (context) => {
         }
       `,
       variables: {
-        limit: 20,
+        limit: 1118,
         offset: 0,
       },
     });
