@@ -12,51 +12,6 @@ import {
 } from "reactstrap";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
-const card = css`
-  margin: 0;
-  padding: 10;
-`;
-
-const title = css`
-  text-align: center;
-`;
-
-const img = css`
-  width: 100px;
-  height: 100px;
-  margin: auto;
-`;
-
-const move = css`
-  padding: 0;
-  height: 300px;
-  overflow: auto;
-`;
-const ul = css`
-  width: 50%;
-  margin: 0 auto 20px;
-  display: flex;
-  justify-content: center;
-`;
-
-const li = css`
-  margin-right: 40px;
-`;
-
-const button = css`
-  position: absolute;
-  bottom: 0;
-`;
-const moveTitle = css`
-  text-align: center;
-`;
-
-const moveItem = css`
-  margin-bottom: 5px;
-  border-style: outset;
-  font-weight: 500;
-  text-align: center;
-`;
 
 export default function pokemon({ poke }) {
   const [state, dispatch] = useContext(MyPokemonContext);

@@ -32,6 +32,7 @@ const Topbar = () => {
         <Link href="/mypokemon">
           <a
             css={css`
+              cursor: pointer;
               position: absolute;
               right: 20px;
             `}
