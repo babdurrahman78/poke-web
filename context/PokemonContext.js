@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useEffect, useState } from "react";
+import React, { useReducer, createContext, useEffect } from "react";
 
 export const MyPokemonContext = createContext();
 

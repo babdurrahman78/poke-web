@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { css } from "@emotion/react";
-import { MyPokemonContext } from "../../components/PokemonContext";
+import { MyPokemonContext } from "../../context/PokemonContext";
 import { Card, CardTitle, CardImg, Row, Col, Button } from "reactstrap";
 
 const MyPokemon = () => {

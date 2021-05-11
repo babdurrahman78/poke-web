@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { css } from "@emotion/react";
-import { MyPokemonContext } from "../components/PokemonContext";
+import { MyPokemonContext } from "../context/PokemonContext";
 import { Card, CardTitle, CardImg, Row, Col } from "reactstrap";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { GET_ALL_POKEMON } from '../graphql/fetchPokemon';
+import client from '../apollo-client';
 
 export default function Home({ pokemons }) {
   const [state] = useContext(MyPokemonContext);
@@ -89,30 +90,11 @@ export default function Home({ pokemons }) {
   );
 }
 
-export const getServerSideProps = async (context) => {
-  const client = new ApolloClient({
-    uri: "https://graphql-pokeapi.vercel.app/api/graphql",
-    cache: new InMemoryCache(),
-  });
+export const getStaticProps = async () => {
 
   try {
     const { data } = await client.query({
-      query: gql`
-        query pokemons($limit: Int, $offset: Int) {
-          pokemons(limit: $limit, offset: $offset) {
-            count
-            next
-            previous
-            status
-            message
-            results {
-              url
-              name
-              image
-            }
-          }
-        }
-      `,
+      query: GET_ALL_POKEMON,
       variables: {
         limit: 1118,
         offset: 0,

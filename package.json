@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.16",
+    "@apollo/react-hooks": "^4.0.0",
     "@badrap/bar-of-progress": "^0.1.2",
     "@emotion/react": "^11.1.5",
     "bootstrap": "^4.6.0",

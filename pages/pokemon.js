@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import { useState, useContext } from "react";
-import { MyPokemonContext } from "../components/PokemonContext";
+import { MyPokemonContext } from "../context/PokemonContext";
+import client from '../apollo-client';
 
 import {
   Card,
@@ -10,8 +11,9 @@ import {
   Modal,
   ModalBody,
 } from "reactstrap";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { GET_POKEMON } from '../graphql/fetchPokemon';
 
 export default function pokemon({ poke }) {
   const [state, dispatch] = useContext(MyPokemonContext);
@@ -200,34 +202,10 @@ export default function pokemon({ poke }) {
 
 export const getServerSideProps = async ({ query }) => {
   const name = query.name;
-  const client = new ApolloClient({
-    uri: "https://graphql-pokeapi.vercel.app/api/graphql",
-    cache: new InMemoryCache(),
-  });
 
   try {
     const { data } = await client.query({
-      query: gql`
-        query pokemon($name: String!) {
-          pokemon(name: $name) {
-            id
-            name
-            sprites {
-              front_default
-            }
-            moves {
-              move {
-                name
-              }
-            }
-            types {
-              type {
-                name
-              }
-            }
-          }
-        }
-      `,
+      query: GET_POKEMON,
       variables: {
         name: name,
       },
