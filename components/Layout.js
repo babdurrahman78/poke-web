@@ -11,7 +11,6 @@ const Layout = ({ children }) => {
         max-width: 1366px;
         margin: auto;
         padding: 0;
-        overflow: hidden
       `}
     >
       <Head>
