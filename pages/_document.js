@@ -9,7 +9,6 @@ export default class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-6WMXPEPLL0"
           ></script>
-          <script>
             <script
               dangerouslySetInnerHTML={{
                 __html: `
@@ -21,7 +20,6 @@ export default class MyDocument extends Document {
           `,
               }}
             />
-          </script>
         </Head>
         <body>
           <Main />
