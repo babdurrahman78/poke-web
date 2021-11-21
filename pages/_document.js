@@ -10,9 +10,15 @@ export default class MyDocument extends Document {
             src="https://www.googletagmanager.com/gtag/js?id=G-6WMXPEPLL0"
           ></script>
           <script>
-            window.dataLayer = window.dataLayer || []; function gtag()
-            {dataLayer.push(arguments)}
-            gtag('js', new Date()); gtag('config', 'G-6WMXPEPLL0');
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          `,
+              }}
+            />
           </script>
         </Head>
         <body>
