@@ -155,14 +155,23 @@ export default function pokemon({ poke }) {
       <Button onClick={catchPokemon} color="success" block>
         CATCH!
       </Button>{" "}
-      <Modal isOpen={modal}>
-        <ModalBody>
+      <Modal isOpen={modal} size='sm'>
+        <ModalBody 
+        css={css`
+          margin: auto;
+      `}>
           {isCatched ? (
-            <div>
+            <div css={
+              css`
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              `
+            } >
               <h3>Yeayyy</h3>
               <p>You got {poke.name}</p>
               <form onSubmit={handleSubmit}>
-                <label>Give a name</label>
+                <label>Name the pokemon!</label>
                 <input css={css`
                   display: block;
                   margin-bottom: 5px;
@@ -176,14 +185,19 @@ export default function pokemon({ poke }) {
                   color: red;
                   font-weight: 500;
                 `}>Nickname must be unique</p> }
-                <Button css={css`
-                  margin-right: 5px;
-                `} color='success'>
-                  Submit
-                </Button>
-                <Button color='danger' onClick={toggle}>
-                  Cancel
-                </Button>
+                <div css={
+                  css`
+                    display: flex;
+                    justify-content: space-between;
+                  `
+                }>
+                  <Button color='success'>
+                    Submit
+                  </Button>
+                  <Button color='danger' onClick={toggle}>
+                    Cancel
+                  </Button>
+                </div>
               </form>
             </div>
           ) : (
